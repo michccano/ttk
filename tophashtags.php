@@ -83,16 +83,7 @@
                                        
                                     
                                     <form>
-                
-                <div class="form-group mb-3">
-                
-                    <select class="form-control" id="example-select">
-                        <option>Choose a Location</option>
-                        <option>US</option>
-                        <option>UK</option>
-                
-                    </select>
-                </div>
+              
              
                 <div class="table-responsive">
                                             <table id="list" class="table table-sm table-centered mb-0 font-14">

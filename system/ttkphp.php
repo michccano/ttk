@@ -1,16 +1,93 @@
 <?php
-  error_reporting("E_ALL");
+    error_reporting("E_ALL");
     header("Content-Type: application/json");
+
     include __DIR__."/vendor/autoload.php";
     
     $api= new \Sovit\TikTok\Api(array(/* config array*/));
 
     if($_GET["a"]=="sh"){
     
-  $result= $api->getChallengeFeed($_GET["id"]);
-  $data = json_encode($result,JSON_PRETTY_PRINT);
-  echo $data;
+    $result= $api->getChallengeFeed($_GET["id"]);
+   
+   // echo json_encode($result,JSON_PRETTY_PRINT);
+
+    $finaltags = array();
+    $finalresults = array();
+
+    for($i=0; $i<count($result->items); $i++){
+      
+      $htags = explode(" ",$result->items[$i]->desc);
+      foreach($htags as $ht){
+      if (strpos($ht, "bitcoin") !== false) {
+
+        if(!in_array($ht,$finaltags)){
+       array_push($finaltags,$ht);
+          array_push($finalresults,array("title"=>$ht,"desc"=>"","viewsCount"=>$result->items[$i]->stats->playCount));
+      }
+          
+      }
+
+
+      //https://mega.nz/file/fI5lWaCZ#uVsekfcTbz9howktwNLpUn_lmGO14GKU7twaVBxlhpk
+  }
+
+
+    }
+
+    echo json_encode($finalresults);
+
+    exit;
+
 }
+
+
+
+if($_GET["a"]=="su"){
+    
+  $result= $api->getChallengeFeed($_GET["id"]);
+   
+  //echo json_encode($result,JSON_PRETTY_PRINT);
+
+   $finaltags = array();
+   $finalresults = array();
+   $result1 = array();
+   
+   for($i=0; $i<count($result->items); $i++){
+     
+     $htags = explode(" ",$result->items[$i]->desc);
+
+     foreach($htags as $ht){
+
+     if (strpos($ht, "bitcoin") !== false) {
+
+       if(!in_array($result->items[$i]->author->uniqueId,$finaltags)){
+        
+        array_push($finaltags,$result->items[$i]->author->uniqueId);
+
+        $result1 = $api->getUser($result->items[$i]->author->uniqueId);
+      
+        array_push($finalresults,array("uniqueId"=>$result->items[$i]->author->uniqueId,"followingCount"=>$result1->stats->followingCount,"followerCount"=>$result1->stats->followerCount,"viewsCount"=>$result1->stats->heartCount));
+     
+
+     
+      }
+         
+     }
+
+
+     //https://mega.nz/file/fI5lWaCZ#uVsekfcTbz9howktwNLpUn_lmGO14GKU7twaVBxlhpk
+ }
+
+
+   }
+
+   echo json_encode($finalresults);
+   exit;
+  
+
+}
+
 
 
     if($_POST["a"]=="get"){

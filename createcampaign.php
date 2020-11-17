@@ -19,6 +19,73 @@
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
         <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
         <link rel="stylesheet" href="assets/js/bootstrap-tagsinput-master/dist/tagsinput.css">
+        <style>
+ input[type=range] {
+-webkit-appearance: none;
+margin: 20px 0;
+width: 100%;
+}
+input[type=range]:focus {
+outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+width: 100%;
+height: 4px;
+cursor: pointer;
+animate: 0.2s;
+background: #03a9f4;
+border-radius: 25px;
+}
+input[type=range]::-webkit-slider-thumb {
+height: 20px;
+width: 20px;
+border-radius: 50%;
+background: #fff;
+box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+cursor: pointer;
+-webkit-appearance: none;
+margin-top: -8px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+background: #03a9f4;
+}
+.range-wrap{
+width: 100%;
+position: relative;
+}
+.range-value{
+position: absolute;
+top: -50%;
+}
+.range-value span{
+width: 30px;
+height: 24px;
+line-height: 24px;
+text-align: center;
+background: #03a9f4;
+color: #fff;
+font-size: 12px;
+display: block;
+position: absolute;
+left: 50%;
+transform: translate(-50%, 0);
+border-radius: 6px;
+}
+.range-value span:before{
+content: "";
+position: absolute;
+width: 0;
+height: 0;
+border-top: 10px solid #03a9f4;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+margin-top: -1px;
+}
+</style>
+
     </head>
 
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
@@ -174,14 +241,24 @@
     <label for="example-range">1</label>
       
 </div>
+
+
 <div class="form-group">
-    <input class="custom-range" id="likesdaily" type="range" name="range" min="0" max="1000">
+   
+    <div class="range-wrap">
+    <div class="range-value" id="likesdailyV"></div>
+<input id="likesdaily" class="custom-range"  type="range" min="0" max="1000" value="200" step="1">
+</div>
+
+
 </div>
 
 <div class="form-group mx-sm-3">
     <label for="example-range">1000</label>
       
 </div>
+
+
 
 
 </form>
@@ -204,7 +281,7 @@
       <div class="form-group mb-3">
    <form class="form-inline">
     <div class="form-group ">
-    <label for="example-range">Follows daily</label>
+    <label for="example-range" >Follows daily</label>
                
     </div>
 
@@ -215,7 +292,13 @@
 
 
 <div class="form-group">
-    <input class="custom-range" id="followsdaily" type="range" name="range" min="0" max="1000">
+<div class="range-wrap">
+    <div class="range-value" id="followsdailyV"></div>
+<input id="followsdaily" class="custom-range" type="range" min="0" max="1000" value="200" step="1">
+</div>
+
+
+
 </div>
 
 <div class="form-group mx-sm-3">
@@ -263,7 +346,12 @@
 
 
 <div class="form-group">
-    <input class="custom-range" id="unfollowsdaily" type="range" name="range" min="0" max="1000">
+  
+    <div class="range-wrap">
+    <div class="range-value" id="unfollowsdailyV"></div>
+<input id="unfollowsdaily" class="custom-range" name="ran"  type="range" min="0" max="1000" value="200" step="1">
+</div>
+
 </div>
 
 <div class="form-group mx-sm-3">
@@ -315,7 +403,12 @@
 
 
 <div class="form-group">
-    <input class="custom-range" id="example-range" type="range" name="range" min="0" max="100">
+<div class="range-wrap">
+    <div class="range-value" id="commentsdailyV"></div>
+<input id="commentsdaily" class="custom-range" name="ran"  type="range" min="0" max="1000" value="200" step="1">
+</div>
+
+
 </div>
 
 <div class="form-group mx-sm-3">
@@ -717,11 +810,31 @@ nointeraction:$("#nointeraction").val()
     $("#standard-modal").modal('hide');
   });
 
-
 });
 
 
+var tmp4 = ["followsdaily","likesdaily","unfollowsdaily","commentsdaily"];
+
+
+for(var i=0; i<tmp4.length; i++){
+
+const range = document.getElementById(tmp4[i]),
+rangeV = document.getElementById(tmp4[i]+'V'),
+setValue = ()=>{
+const
+newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ),
+newPosition = 10 - (newValue * 0.2);
+rangeV.innerHTML = `<span>${range.value}</span>`;
+rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+};
+
+
+range.addEventListener('input', setValue);
   
+}
+
+document.addEventListener("DOMContentLoaded", setValue);
+
         </script>
 
 

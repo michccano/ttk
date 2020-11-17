@@ -397,9 +397,10 @@ $.get("http://localhost:5000/searchhashtags/"+$("#HashtagWord").val(), function(
 $("#SearchResults").show();
 
 var num = 1;
+var vvv = JSON.parse(data.Data1);
 
-for(var i=0; i<data.Data.length; i++){
-var htm = '<tr><td>'+num+'</td><td> <i class="add_h dripicons-plus" ttl="'+data.Data[i].challenge.title+'" style="size:50px;"></i><a href="#" data-toggle="tooltip" title="" data-original-title="'+data.Data[i].challenge.desc+'">'+data.Data[i].challenge.title+'</a></td><td>'+fnum(data.Data[i].stats.viewCount)
+for(var i=0; i<vvv.length; i++){
+var htm = '<tr><td>'+num+'</td><td> <i class="add_h dripicons-plus" ttl="'+vvv[i].title+'" style="size:50px;"></i><a href="#" data-toggle="tooltip" title="" data-original-title="'+vvv[i].desc+'">'+vvv[i].title+'</a></td><td>'+fnum(vvv[i].viewsCount)
 +'</td></tr>';
 $("#list tbody").append(htm);
 

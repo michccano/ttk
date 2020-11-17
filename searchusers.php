@@ -108,7 +108,7 @@
                 <label>Search for creators/username</label>
                 <div class="input-group">
                
-                                    <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                                    <input type="text" class="form-control dropdown-toggle" placeholder="Search..."      id="UserKW">
                                     
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" id="SearchButton" type="submit">Search</button>
@@ -133,8 +133,10 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Hashtags</th>
-                                                        <th style="width: 40%;">Views</th>
+                                                        <th>Users</th>
+                                                        <th >Following</th>
+                                                        <th >Followers</th>
+                                                        <th >Views</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -398,18 +400,19 @@ $("#SearchNow").hide();
 $("#loading").show();
 
 
-$.get("http://localhost:5000/searchusers/"+$("#HashtagWord").val(), function(data, status){
-    $("#loading").hide();
+$.get("http://localhost:5000/searchusers/"+$("#UserKW").val(), function(data, status){
 
-    $("#SearchResults").show();
+$("#loading").hide();
 
+$("#SearchResults").show();
 
+var vvv = JSON.parse(data.Data1);
 
 var num = 1;
 
-for(var i=0; i<data.Data.length; i++){
-var htm = '<tr><td>'+num+'</td><td> <i class="add_h dripicons-plus" ttl="'+data.Data[i].user.uniqueId+'" style="size:50px;"></i><a href="#" data-toggle="tooltip" title="" data-original-title="">'+data.Data[i].user.uniqueId+'</a></td><td>'+data.Data[i].stats.followingCount
-+'</td><td>'+data.Data[i].stats.followerCount+'</td></tr>';
+for(var i=0; i<vvv.length; i++){
+var htm = '<tr><td>'+num+'</td><td> <i class="add_h dripicons-plus" ttl="'+vvv[i].uniqueId+'" style="size:50px;"></i><a href="#" data-toggle="tooltip" title="" data-original-title="">'+vvv[i].uniqueId+'</a></td><td>'+vvv[i].followingCount
++'</td><td>'+vvv[i].followerCount+'</td><td>'+fnum(vvv[i].viewsCount)+'</tr>';
 $("#list tbody").append(htm);
 
 num +=1;

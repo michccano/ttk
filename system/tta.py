@@ -1,4 +1,4 @@
-from TikTokApi import TikTokApi
+from TikTokAPI import TikTokAPI
 from theapi import TheTikTokAPI
 from flask import Flask
 import json
@@ -8,9 +8,7 @@ from flask import  request
 from flask_socketio import SocketIO
 
 
-
 app = Flask(__name__)
-
 CORS(app)
 
 
@@ -21,11 +19,11 @@ def hello_world():
 
     trendingChallenges = api.discoverHashtags()
   
-
     #print(trendingChallenges)
 
     return {"Data":trendingChallenges}
     
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -33,6 +31,7 @@ def upload_file():
     if uploaded_file.filename != '':
         uploaded_file.save('./uploads/'+uploaded_file.filename)
     return "GOOD"
+
 
 
 @app.route('/fff')
@@ -82,7 +81,7 @@ def getVideosByMusic(music_id):
 @app.route('/getvideosbyuser/<userid>')
 def getVideosByUser(userid):
     api = TheTikTokAPI(timezone="Europe/Amsterdam",region="Netherlands")
-
+    api
     return api.getVideosByUserName(userid)
 
 
@@ -97,8 +96,13 @@ def searchHashtags(kw):
 
     trending = api.getHashtagDetails(kw)
 
-    #discoverHashtags()
-    fff = requests.get("http://localhost/tiktok/system/ttkphp?a=sh&id="+trending["challengeInfo"]["challenge"]["id"])
+    print("@#HERE")
+    print(trending)
+
+    tmp55 = "http://localhost/ttk/system/ttkphp?a=sh&id="+trending["challengeInfo"]["challenge"]["id"]
+    print(tmp55)
+
+    fff = requests.get("http://localhost/ttk/system/ttkphp?a=sh&id="+trending["challengeInfo"]["challenge"]["id"])
     
     return {'Data1':fff.text}
 
@@ -109,9 +113,18 @@ def searchUsers(un):
     api = TikTokApi( region="NL")   
     results = 10
 
-    trending = api.search_for_users(un, count=30)
+    trending = api.getHashtagDetails(un)
 
-    return {'Data':trending}
+    print("@#HERE")
+    print(trending)
+
+    tmp55 = "http://localhost/ttk/system/ttkphp?a=su&id="+trending["challengeInfo"]["challenge"]["id"]
+    print(tmp55)
+
+    fff = requests.get("http://localhost/ttk/system/ttkphp?a=su&id="+trending["challengeInfo"]["challenge"]["id"])
+    
+    return {'Data1':fff.text}
+
 
 
 @app.route('/getuser/<un>')

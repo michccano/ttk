@@ -83,17 +83,7 @@
                                     <div class="card-body">
                                          <form>
                 
-                <div class="form-group mb-3">
-                
-                    <select class="form-control" id="example-select">
-                        <option>Choose a Location</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-
+            
 
                 <div id="loading"  class="progress">
  
