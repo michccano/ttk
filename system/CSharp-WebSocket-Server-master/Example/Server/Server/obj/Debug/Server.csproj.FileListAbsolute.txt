@@ -1,0 +1,7 @@
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\bin\Debug\Server.exe.config
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\bin\Debug\Server.exe
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\bin\Debug\Server.pdb
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\obj\Debug\Server.exe
+C:\xampp\htdocs\tiktok\system\CSharp-WebSocket-Server-master\Example\Server\Server\obj\Debug\Server.pdb

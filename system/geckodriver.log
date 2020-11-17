@@ -1,0 +1,22 @@
+1605014254123	geckodriver	INFO	Listening on 127.0.0.1:57316
+1605014337094	geckodriver	INFO	Listening on 127.0.0.1:57359
+1605014363769	geckodriver	INFO	Listening on 127.0.0.1:57390
+1605014520681	geckodriver	INFO	Listening on 127.0.0.1:57537
+1605014755275	geckodriver	INFO	Listening on 127.0.0.1:57922
+1605014930521	geckodriver	INFO	Listening on 127.0.0.1:58083
+1605015829692	geckodriver	INFO	Listening on 127.0.0.1:58960
+1605015881798	geckodriver	INFO	Listening on 127.0.0.1:58992
+1605015884854	mozrunner::runner	INFO	Running command: "C:/Program Files/Mozilla Firefox/firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\michc\\AppData\\Local\\Temp\\rust_mozprofileMb59Lp"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605015888932	Marionette	INFO	Listening on port 59001
+1605015888992	Marionette	WARN	TLS certificate errors will be ignored for this session
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+1605015958459	Marionette	INFO	Stopped listening on port 59001
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

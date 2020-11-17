@@ -1,0 +1,1 @@
+from .tiktokapi import TikTokAPI
